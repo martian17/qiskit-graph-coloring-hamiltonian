@@ -30,7 +30,7 @@ q3 = QuantumRegister(1)
 q4 = QuantumRegister(n)
 cr = ClassicalRegister(n)
 
-def m_gate_for_special_case(q1,q2,q4):
+def m_gate_for_special_case(q1,q2,q4, hamiltonian):
     circuit = QuantumCircuit(qr, cr)
 
 def gate_aza(q1,q2,q3):
