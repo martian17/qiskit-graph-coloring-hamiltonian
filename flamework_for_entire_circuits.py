@@ -33,7 +33,7 @@ cr = ClassicalRegister(n)
 def m_gate_for_special_case(q1,q2,q4, hamiltonian):
     circuit = QuantumCircuit(qr, cr)
 
-ef gate_aza(q1,q2,q3,q4):
+def gate_aza(q1,q2,q3,q4):
     #circuit = QuantumCircuit(q1,q2,q3,q4)
     matrix = [[1, 0, 0, 0], [0, 1/math.sqrt(2), 1/math.sqrt(2), 0], [0, 1/math.sqrt(2), -1/math.sqrt(2), 0], [0,0,0,1]]
     for i in range(n):
