@@ -33,6 +33,29 @@ cr = ClassicalRegister(n)
 def m_gate_for_special_case(q1,q2,q4, hamiltonian):
     circuit = QuantumCircuit(qr, cr)
 
-def gate_aza(q1,q2,q3):
+ef gate_aza(q1,q2,q3,q4):
+    #circuit = QuantumCircuit(q1,q2,q3,q4)
+    matrix = [[1, 0, 0, 0], [0, 1/math.sqrt(2), 1/math.sqrt(2), 0], [0, 1/math.sqrt(2), -1/math.sqrt(2), 0], [0,0,0,1]]
     for i in range(n):
-        qpe.swap(q1[i],q2[i])
+        circuit.unitary(matrix,[q1[i],q2[i]])
+    circuit.barrier()
+    for i in range(n):
+        circuit.x(q2[i])
+        circuit.ccx(q1[i],q2[i],q3)
+        circuit.x(q2[i])
+    circuit.barrier()
+    #hogehoge
+    circuit.x(q3)
+    for i in range(n):
+        circuit.cu1(-2**i, q3, q4[i])
+    circuit.x(q3)
+    for i in range(n):
+        circuit.cu1(2**i, q3, q4[i])
+    circuit.barrier()
+    for i in range(n):
+        circuit.x(q2[i])
+        circuit.ccx(q1[i],q2[i],q3)
+        circuit.x(q2[i])
+    circuit.barrier()
+    for i in range(n):
+        circuit.unitary(matrix,[q1[i],q2[i]])
