@@ -85,13 +85,13 @@ def gate_mw(hamil,N,q1,q2,q3,q4,ancils):
             # find the target
             val = fnon0(hamil[i])
             targetLocation = genvec(matlen,val) # weight
-            print(hamil[i],i,targetLocation)
+            # print(hamil[i],i,targetLocation)
             for j in range(N):# for each controlled output
                 if targetLocation[j] == 1:
-                    print(matlen,j,i)
+                    # print(matlen,j,i)
                     mcts(circuit, q1, q4[j], ancils, genvec(matlen,i))
     circuit.barrier()
-    print("b")
+    # print("b")
     # m
     for i in range(matlen):
         if all0(hamil[i]): 
@@ -100,10 +100,10 @@ def gate_mw(hamil,N,q1,q2,q3,q4,ancils):
             # find the target
             val = fnon0(hamil[i])
             targetLocation = convertToState(hamil[i]) # multiplication result
-            print(hamil[i],i,targetLocation)
+            # print(hamil[i],i,targetLocation)
             for j in range(N):# for each controlled output
                 if targetLocation[j] == 1:
-                    print(matlen,j,i)
+                    # print(matlen,j,i)
                     mcts(circuit, q1, q2[j], ancils, genvec(matlen,i))
     return circuit
 
@@ -144,7 +144,7 @@ def entire_circuit(hamil):
     ancils = QuantumRegister(N)
     cr = ClassicalRegister(N)
     circuit = QuantumCircuit(q1,q2,q3,q4,ancils,cr)
-    print(q1)
+    # print(q1)
     # gates M and W
     circuit_mw = gate_mw(hamil,N,q1,q2,q3,q4,ancils)
     circuit = circuit.combine(circuit_mw)
@@ -159,12 +159,12 @@ def entire_circuit(hamil):
     return circuit
 
 
-entire_circuit(
-[
-    [0,2,0,0],
-    [2,0,0,0],
-    [0,0,0,1],
-    [0,0,1,0]
-]
-).draw(output = "mpl")
+# entire_circuit(
+# [
+#     [0,2,0,0],
+#     [2,0,0,0],
+#     [0,0,0,1],
+#     [0,0,1,0]
+# ]
+# ).draw(output = "mpl")
 
