@@ -100,4 +100,4 @@ def GCL(m):
 
 
 # print(findGraphColoring(b))
-print(GCL(b))
+# print(GCL(b))
